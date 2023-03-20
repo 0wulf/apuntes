@@ -1,5 +1,5 @@
-# Clase 05: Scheduling I
-## Scheduling
+# Clase 05: _Scheduling_
+## _Scheduling_
 ### Planificación de CPU: ¿Cómo podemos gestionar los recursos que tenemos para lograr _multitasking_?
 Tenemos:
 * Múltiples procesos en memoria (multiprogramación) ordenados en una tabla de PCBs. Si no tuvieramos multiprogramación no necesitaríamos planificar.
@@ -70,7 +70,7 @@ Según tipo de interrupción:
 <br></br>
 
 Según objetivo:
-* _BATCH_: trabajo por lotes. Sin interacción.
+* _Batch_: trabajo por lotes. Sin interacción.
   - Mantener la CPU lo más ocupada posible.
   - Minimizar _turnaround time_: tiempo desde envío hasta término.
   - Maximizar _throughput_: número de trabajos por unidad de tiempo.
@@ -84,3 +84,32 @@ Según objetivo:
   - Un buen ejemplo es un sistema digital de frenado de un auto.
 <br></br>
 Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecuci
+
+
+# Clase 06: Algoritmos de _Scheduling_ I
+## Algoritmos de _batch scheduling_
+### _First-come, First-served_ (FCFS)
+Orden de llegada. Cola FIFO
+<br></br>
+![image](https://user-images.githubusercontent.com/101217121/226387399-0e56e6ef-a673-42a4-8fd9-75dc110adf8e.png)
+<br></br>
+**Importante entender la tabla y el gráfico.**
+<br></br>
+_Turnaround_ promedio de 109. Observar la diferencia de _turnaround_ si el orden de llegada hubiese sido P2 en $t=0$, P1 en $t=1$ y P3 en $t=2$. En este caso el _turnaround_ sería de 79.
+<br></br>
+Si bien es sencillo de implementar, depende mucho del orden en el que llegan los procesos:
+* _Non-preemtive_
+* Simple
+* Poco predecible. _Convoy effect_
+
+### _Shortesr Job First_ (SJF)
+El más corto primero.
+<br></br>
+![image](https://user-images.githubusercontent.com/101217121/226387334-da46e64d-b22c-4f83-88ee-670c30524a2f.png)
+<br></br>
+_Turnaround_ promedio de 49.
+<br></br>
+* El algorítmo es óptimo :)
+* No sabemos cuánto demora cada _CPU-brust_ :(
+* Esta versión es _non-preemptive_. La versión _preemptive_ es _Shortest Remaining Time Next_ la cual escoge al que le queda menos tiempo. Este tiempo se debe estimar lo que puede agregar _overhead_.
+* Posible inanición (_starvation_) de procesos largos x.x (si me demoro mucho puede que nunca me toque)
