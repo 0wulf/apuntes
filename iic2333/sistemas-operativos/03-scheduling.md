@@ -1,4 +1,4 @@
-# Clase 05: _Scheduling_
+# Clase 04: _Scheduling_
 ## _Scheduling_
 ### Planificación de CPU: ¿Cómo podemos gestionar los recursos que tenemos para lograr _multitasking_?
 Tenemos:
@@ -86,7 +86,7 @@ Según objetivo:
 Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecuci
 
 
-# Clase 06: Algoritmos de _Scheduling_ I
+# Clase 05: Algoritmos de _Scheduling_ I
 ## Algoritmos de _batch scheduling_
 ### _First-come, First-served_ (FCFS)
 Orden de llegada. Cola FIFO
