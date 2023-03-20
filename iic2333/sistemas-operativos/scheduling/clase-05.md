@@ -62,21 +62,25 @@ Podemos clasificar las políticas de _scheduling_ según tipo de interrupción y
 Según tipo de interrupción:
 * _Preemptive_ (expropiativo):
   - Utiliza interrupciones (ej: de reloj _timer_) para decidir cuando sacar un proceso de ejecución.
+  - Hoy en día los OS suelen utilizar _schedulers_ de tipo expropiativo. 
 * _Non-Preemptive_ (colaborativo o no-expropiativo): Permite que un proceso ejecute hasta que:
   - El proceso deja voluntariamente la CPU, ó
   - El proceso se bloquea en I/O, ó
   - El proceso termina.
 <br></br>
+
 Según objetivo:
 * _BATCH_: trabajo por lotes. Sin interacción.
   - Mantener la CPU lo más ocupada posible.
   - Minimizar _turnaround time_: tiempo desde envío hasta término.
-  - Maximizar _throughput_: número de trabajos por hora.
+  - Maximizar _throughput_: número de trabajos por unidad de tiempo.
 * _Interactive_: 
   - Minimizar tiempo de respuesta.
   - Satisfacer usuarios.
+  - Gran parte de los OS implementan _schedulers_ interactivos.
 * _Real Time_:
   - Tiempo de respuesta debe ser predecible.
   - Alcanzar _deadlines_.
+  - Un buen ejemplo es un sistema digital de frenado de un auto.
 <br></br>
 Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecuci
