@@ -82,8 +82,8 @@ Según objetivo:
   - Tiempo de respuesta debe ser predecible.
   - Alcanzar _deadlines_.
   - Un buen ejemplo es un sistema digital de frenado de un auto.
-<br></br>
-Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecuci
+<p align="justify">
+Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecución.</p>
 
 
 # Clase 05: Algoritmos de _Scheduling_ I
@@ -108,8 +108,71 @@ El más corto primero.
 ![image](https://user-images.githubusercontent.com/101217121/226387334-da46e64d-b22c-4f83-88ee-670c30524a2f.png)
 <br></br>
 _Turnaround_ promedio de 49.
-<br></br>
 * El algorítmo es óptimo :)
 * No sabemos cuánto demora cada _CPU-brust_ :(
 * Esta versión es _non-preemptive_. La versión _preemptive_ es _Shortest Remaining Time Next_ la cual escoge al que le queda menos tiempo. Este tiempo se debe estimar lo que puede agregar _overhead_.
 * Posible inanición (_starvation_) de procesos largos x.x (si me demoro mucho puede que nunca me toque)
+
+# Clase 06: Algoritmos de _Scheduling_ II
+## Algoritmos de _scheduling_ interactivos
+<p align="justify">Para este tipo de algoritmos, lo que más importa es que los tiempos de respuesta sean mínimos. En otras palabras, estos algoritmos tienen como métrica principal el <i>response time</i>. El tiempo de respuesta es el tiempo que pasa desde que el usuario envía un trabajo hasta que el trabajo comienza a ejecutarse.
+</p>
+<p align="center">
+<img src="2023-03-22-09-46-38.png"></img>
+</p>
+
+### _Round Robin_ (RR)
+* Asigna un tiempo de ejecución (_quantum_, _time slice_) fijo a cada proceso. 
+* Cuando el tiempo de ejecución de un proceso termina, el proceso es suspendido y se pasa al siguiente proceso en la cola.
+* El tiempo de ejecución de cada proceso es el mismo y se asigna en forma circular.
+* De tipo <i>preemptive</i>.
+<p align="center">
+<img src="2023-03-22-10-00-18.png"></img>
+</p>
+
+* Con $n$ procesos, cada uno recibe $\frac{1}{n}$ de CPU. 
+* Ningún proceso espera más de $(n-1)\times q$ para ejecutar.
+* Altamente dependiente de la elección de $q$:
+  - Si $q$ es muy grande, el algoritmo se comporta como FCFS.
+  - Si $q$ es muy pequeño, puede generarse _thrashing_ por muchos cambios de contexto.
+
+### _Priority Scheduling_
+* Cada proceso tiene una prioridad.
+* Cuando hay prioridades iguales, se aplica FCFS o RR.
+* SJF es un caso particular de este algoritmo.
+* Prioridades pueden ser estáticas o dinámicas.
+* Puede producirse inanición (_starvation_) de procesos de baja prioridad.
+* Para evitar _starvation_ se puede utilizar _aging_. Este mecanismo incrementa artificialmente la prioridad de los procesos que llevan más tiempo esperando.
+
+### _Multi-level Feedback Queue Scheduling_
+* Buscamos optimizar el _turnaround time_ y minimizar el _response time_.
+* Se utilizan múltiples colas de procesos con diferentes niveles de prioridad.
+* Tiene varias reglas:
+  1. Si $priority(A)>priority(B)$, ejecutar $A$.
+  2. Si $priority(A)=priority(B)$, ejecutar $A$ y $B$ con RR.
+  3. Los procesos se ingresan en la cola con mayor prioridad.
+  4. Si un proceso utiliza todo su tiempo de ejecución, se pasa a la cola de menor prioridad. 
+  5. Después de un tiempo $S$, todos los procesos se mueven a la cola con mayor prioridad.
+
+<p align="center">
+  <img src="2023-03-22-10-36-00.png"></img>
+</p>
+
+## Algoritmos de _real time scheduling_
+### Procesos de tiempo real
+* Poseen _deadlines_ y períodos de ejecución.
+* Sistema debe determinar si el proceso puede ser ejecutado dado el _deadline_ $d$, período $p$ y tiempo de ejecución $t$.
+* En cada período el proceso debe avanzar en su ejecución una vez.
+<p align="center">
+  <img src="2023-03-22-10-47-35.png"></img>
+</p>
+
+### Algoritmo _Rate Monotonic Scheduling_ (RMS)
+* A cada proceso se le asigna una prioridad $\frac{t_i}{p_i}$
+* Es un algoritmo estático, de modo que podría perder _deadlines_.
+<p align="center">
+  <img src="2023-03-22-10-55-03.png"></img>
+</p>
+
+### Algoritmo _Earliest Deadline First_ (EDF)
+* Es dinámico, eligiendo siempre el proceso con _deadline_ más cercana.
