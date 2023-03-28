@@ -18,7 +18,7 @@ Una **regla** en programación en lógica es un objeto de la forma $Head \larr B
 #### Ejemplos:
 * $\{u\}\larr\{t,r\}$ en clingo: `u :- t, r.`
 * $\{t\}\larr\{\}$ en clingo: `t.`
-* $\{\}\larr r$ en clingo: `:- r.`
+* $\{\}\larr r$ en clingo: `:- r.` Esta regla es una especie de filtro.
 * $\{p,q\}\larr\{r,s\}$ en clingo: `p,q :- r,s.`
 
 ### Programas
