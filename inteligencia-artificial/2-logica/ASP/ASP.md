@@ -10,44 +10,47 @@
 
 <p align=justify>Al ejecutar el programa, clingo retorna un <i>Answer Set</i> o un conjunto de <b>modelos</b>. La aparición de más de un modelo se puede lograr mediante la inclusión de <i>choice rules</i>. Estas son de la forma ...</p>
 
-
+<p align=justify>
+    Para ver solo las apariciones de un predicado en los modelos, se puede agregar la línea <code>#show predicado/N</code> donde <code>N</code> es el número de "argumentos" del predicado. Por ejemplo, para ver solo las apariciones de <code>fact</code> en los modelos, se puede agregar la línea <code>#show fact/0</code>.
+</p>
 ## Semántica de programas sin variables
 ### Reglas
 #### Definición
-Una **regla** en programación en lógica es un objeto de la forma $Head \larr Body$, donde $Head$ y $Body$ son conjuntos de átomos.
+Una **regla** en programación en lógica es un objeto de la forma $Head \leftarrow Body$, donde $Head$ y $Body$ son conjuntos de átomos.
 #### Ejemplos:
-* $\{u\}\larr\{t,r\}$ en clingo: `u :- t, r.`
-* $\{t\}\larr\{\}$ en clingo: `t.`
-* $\{\}\larr r$ en clingo: `:- r.` Esta regla es una especie de filtro.
-* $\{p,q\}\larr\{r,s\}$ en clingo: `p,q :- r,s.`
+* $\{u\}\leftarrow\{t,r\}$ en clingo: `u :- t, r.`
+* $\{t\}\leftarrow\{\}$ en clingo: `t.`
+* $\{\}\leftarrow r$ en clingo: `:- r.` Esta regla es una especie de filtro.
+* $\{p,q\}\leftarrow\{r,s\}$ en clingo: `p,q :- r,s.`
 
 ### Programas
 #### Definición
 Un **programa** es un conjunto de reglas.
 #### Programas básicos
-Un programa $\Pi$ es un **programa básico** cuando cada regla $H\larr B$ en $\Pi$ es tal que $H$ contiene exactamente un átomo.
+Un programa $\Pi$ es un **programa básico** cuando cada regla $H\leftarrow B$ en $\Pi$ es tal que $H$ contiene exactamente un átomo.
 ### Modelos
 #### Computando el modelo de un programa básico
 Dado un programa básico $\Pi$, el siguiente algoritmo retorna el modelo de $\Pi$:
-1. $M:=\{p|\text{ para toda regla }\{p\}\larr\empty\in\Pi\}$ (la regla es de la forma $\{p\}\larr\empty$).
-2. Para cada regla de la forma $H\larr B \in\Pi$ tal que $B\subseteq M$ se cumple que $M:=M\cup H$.
+1. $M:=\{p|\text{ para toda regla }\{p\}\leftarrow\empty\in\Pi\}$ (la regla es de la forma $\{p\}\leftarrow\empty$).
+2. Para cada regla de la forma $H\leftarrow B \in\Pi$ tal que $B\subseteq M$ se cumple que $M:=M\cup H$.
 3. Si $M$ cambió en 2. entonces volver a 2. En caso contrario retornar $M$ y $M$ es el modelo.
 #### Definición
-$M$ es un **modelo** de un programa $\Pi$ instanciado y sin negación si y solo si $M$ es un conjunto minimal (respecto de la relación de subconjunto) de átomos de $\Pi$, tal que si $Head\larr Body \in \Pi$ y $Body\subseteq M$, entonces $Head \cap M \neq\empty$.
+$M$ es un **modelo** de un programa $\Pi$ instanciado y sin negación si y solo si $M$ es un conjunto minimal (respecto de la relación de subconjunto) de átomos de $\Pi$, tal que si $Head\leftarrow Body \in \Pi$ y $Body\subseteq M$, entonces $Head \cap M \neq\empty$.
 
 ### Reglas con negación
 #### Definición
-Una **regla** en programación en lógica es un objeto de la forma $Head \larr Pos, not(Neg)$, donde $Head$, $Pos$ y $Neg$ son conjuntos de átomos.
+Una **regla** en programación en lógica es un objeto de la forma $Head \leftarrow Pos, not(Neg)$, donde $Head$, $Pos$ y $Neg$ son conjuntos de átomos.
 #### Ejemplos:
-* $\{p,q\}\larr\{r,s\},not(\{t\})$ en clingo: `p;q :- r,s, not t.`
-* $\{t\}\larr\empty,not(\{\})$ en clingo: `t.`
-* $\{\}\larr not(\{r,s\})$ en clingo: `:- not r, not s.`
+* $\{p,q\}\leftarrow\{r,s\},not(\{t\})$ en clingo: `p;q :- r,s, not t.`
+* $\{t\}\leftarrow\empty,not(\{\})$ en clingo: `t.`
+* $\{\}\leftarrow not(\{r,s\})$ en clingo: `:- not r, not s.`
 
 ### Reducción y conjunto respuesta
 #### Definición
 La **reducción** de un programa $\Pi$ relativa a un conjunto $X$, denotada como $\Pi^X$, es la que resulta de hacer:
 1. $\Pi^X:=\Pi$
-2. Borrar toda regla $Head\larr Pos\cup not(Neg)$ de $\Pi^X$ cuando $Neg\cap X \neq \empty$.
-3. Reemplazar cada regla $Head\larr Pos\cup not(Neg)$ en $\Pi^X$ por $Head\larr Pos$ cuando $Neg\cap X = \empty$.
+2. Borrar toda regla $Head\leftarrow Pos\cup not(Neg)$ de $\Pi^X$ cuando $Neg\cap X \neq \empty$.
+3. Reemplazar cada regla $Head\leftarrow Pos\cup not(Neg)$ en $\Pi^X$ por $Head\leftarrow Pos$ cuando $Neg\cap X = \empty$.
 #### Teorema
 $X$ es un modelo de un programa con negación $\Pi$si y solo si $X$ es un modelo para $\Pi^X$ 
+
