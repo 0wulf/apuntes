@@ -54,3 +54,21 @@ La **reducción** de un programa $\Pi$ relativa a un conjunto $X$, denotada como
 #### Teorema
 $X$ es un modelo de un programa con negación $\Pi$si y solo si $X$ es un modelo para $\Pi^X$ 
 
+### Restricciones de cardinalidad
+<p align=justify>
+También llamadadas <i>choice rules</i>, son aquellas escoger entre diferentes átomos en el <i>head</i> de una regla, teniendo un <code>head</code> de la forma <code>{pre1; pre2}</code> y nos entrega un modelo para toda combinación posible de los átomos en el <i>head</i>. Se pueden añadir restricciones de cardinalidad al definir el rango, por ejemplo <code>1{pred1, pred2}1</code>, el cual muestra los modelos donde aparece exactamente un átomo de los dos en el <i>head</i>.
+</p>
+<p align=justify>
+Las restricciones de cardinalidad pueden incluir intervalos y <i>pools</i>. Por ejemplo, la regla <code>{p(1..3)}</code> es lo mismo que <code>{p(1); p(2); p(3)}</code>. Asímismo, <code>{p(a; b; c)}</code> es lo mismo que <code>{p(a); p(b); p(c)}</code>.
+</p>
+
+### Sets independientes
+
+```
+% Colorear los vértices de un grafo de modo que no haya dos vértices adyacentes con el mismo color.
+
+% input: conjunto vertex/1 de vértices del grafo G; conjunto edge/2 de aristas del grafo G; conjunto color/1 de colores disponibles.
+
+1 { color(X, C) : color(C)} 1 :- vertex(X).
+% logrado: para todo vértice X existe un único color C tal que color(X, C) (C es el color del vértice X).
+```
