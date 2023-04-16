@@ -6,7 +6,9 @@ Un _thread_ es parecido a un proceso, pero más liviano. Es la unidad básica de
 * Stack
 
 Los procesos pueden tener uno o más threads:
-![](2023-04-12-18-38-05.png)
+<p align="center">
+    <img src="assets/threads/threads.png" width="75%" height="75%">
+</p>
 Cuando hablamos de procesos distintos estamos hablando de espacios de memoria distintos, en cambio, cuando hablamos de threads distintos estamos hablando de distintos puntos de ejecución dentro del mismo espacio de memoria: comparten el mismo código, la misma sección de datos globales, los mismos archivos, el mismo heap. Pero tienen su propio stack y sus propios registros y PC.
 
 ## ¿Por qué usar threads?
@@ -28,8 +30,11 @@ Cuando hablamos de procesos distintos estamos hablando de espacios de memoria di
 * Registros (incluyendo PC)
 * Estado
 
-![](2023-04-12-18-53-48.png)
-![](2023-04-12-18-54-31.png)
+
+<p align="center">
+    <img src="assets/threads/multiple-stacks.png"></img>
+    <img src="assets/threads/posix-threads.png"></img>
+</p>
 
 La función `printf` es una función que no es thread-safe. Si dos threads llaman a `printf` al mismo tiempo, el resultado puede ser que uno de los dos threads no imprima nada, o que se mezclen los resultados de ambos threads.
 
