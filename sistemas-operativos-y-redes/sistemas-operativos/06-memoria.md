@@ -4,7 +4,7 @@ La memoria del computador está organizada como un arreglo muy grande de _bytes_
 * Las variables no siempre están en la misma dirección. Requisito: relocalización de variables.
 * Un proceso podría leer y modificar memoria de otro. Requisito: protección de memoria.
 
-Es evidente entonces, que con multiprogramación, no nos sirven direcciones absolutas.
+Es evidente entonces, que con multiprogramación, no nos sirven direcciones absolutas. Así, una solución es que el compilador no genera direcciones absolutas, si no que direcciones reubicables (e.g. `JMP 32+X`). Esto permite utilizar un espacio de direcciones.
 
 <p align="center">
     <img src="assets/memoria/memoria-multiprogramacion.png" />
@@ -25,7 +25,12 @@ El _mid term scheduler_ determina cuando hay que hacer operaciones de _swapping_
     <img src="assets/memoria/huecos.png" />
 </p>
 
-Una opción es realizar una operación de compactación, fusionando los huecos. Esto es muy costoso, ya que requiere mover todos los procesos en memoria. Algo mejor es asignar de manera inteligente los espacios de memoria para que nunca deba compactar.
+### Compactación
+Una opción es realizar una operación de **compactación**, fusionando los huecos. Esto es muy costoso, ya que requiere mover todos los procesos en memoria. Algo mejor es asignar de manera inteligente los espacios de memoria para que nunca deba compactar. Esto da paso a las estrategias de alocación de memoria.
+
+<p align="center">
+    <img src="assets/memoria/compactacion.png" />
+</p>
 
 ### Estrategias
 * *First-fit*: asigna el primer hueco que encuentre.
@@ -35,7 +40,10 @@ Una opción es realizar una operación de compactación, fusionando los huecos. 
 Cuando los espacios libres quedan separados se dice que hay **fragmentación**.
 
 ## Segmentación
-Muchas veces los procesos requieren harta memoria, en general, es difícil tener un espacio de memoria físico en donde quepa por completo. La segmentación permite dividir un proceso en segmentos, cada uno con su propio espacio de direcciones. Esto permite que cada segmento pueda ser cargado en memoria independientemente. Los segmentos son espacios de direcciones contiguos. La _MMU_ mapea cada segmento a un espacio de memoria físico. Queda especificado en la tabla de segmentos.
+Muchas veces los procesos requieren harta memoria, en general, es difícil tener un espacio de memoria físico en donde quepa por completo. La segmentación permite dividir un proceso en segmentos más pequeños, cada uno con su propio espacio de direcciones. Esto permite que cada segmento pueda ser cargado en memoria independientemente. Los segmentos son espacios de direcciones contiguos (segmentos: `code`, `heap`, `stack`, ...
+). 
+
+La _MMU_ mapea cada segmento a un espacio de memoria físico. Queda especificado en la tabla de segmentos. Esta tabla además especifica el tamaño de memoria que se la ha asignado, por lo que, todos reciben una asignación de memoria contigua, eliminando la fragmentación externa. Sin embargo, la fragmentación interna sigue existiendo. Esta consiste en los espacios sin utilizar dentro de un segmento.
 
 <p align="center">
     <img src="assets/memoria/segmentacion.png" />
@@ -49,20 +57,20 @@ Necesito conocer el segmento y el _offset_. Con lógica de _bits_ es muy fácil.
 
 ```c
 SEG_MASK = 0x3000;
- OFFSET_MASK = 0xFFF;
- SEG_SHIFT = 12;
- virtualAddress = 4200;
- segment = (virtualAddress & SEG_MASK) >> SEG_SHIFT;
- offset = virtualAddress & OFFSET_MASK;
- if(offset >= size[segment])
-   raise(SEG_FAULT);
- else
-   physicalAddress = base[segment] + offset;
+OFFSET_MASK = 0xFFF;
+SEG_SHIFT = 12;
+virtualAddress = 4200;
+segment = (virtualAddress & SEG_MASK) >> SEG_SHIFT;
+offset = virtualAddress & OFFSET_MASK;
+if(offset >= size[segment])
+    raise(SEG_FAULT);
+else
+    physicalAddress = base[segment] + offset;
 ```
 
 Ahora, hay que tener cuidado, porque crece en sentido contrario. Así, se agrega un bit que indica el sentido en el que crece el segmento.
 
-La segmentación ayuda a eliminar la fragmentación externa (), sin embargo, sigue existiendo fragmentación. Además, es difícil anticipar el tamaño de los segmentos.
+La segmentación elimina la fragmentación externa (espacios libres (sin asignar, no sin ocupar) no contiguos), sin embargo, sigue existiendo fragmentación (fragmentación interna, cuando se asigna más de lo pedido). Además, es difícil anticipar el tamaño de los segmentos.
 
 ### Visualización de segmentos
 el comando `pmap` permite visualizar los segmentos de un proceso.
@@ -87,7 +95,16 @@ En una arquitectura con espacio de direcciones virtuales de 32 bits, si cada pá
 La dirección de la tabla de páginas se guarda en el PCB (_process control block_), como PTBR (_page table base register_). Así, cada acceso a memoria se convierte en dos accesos: primero se accede a la tabla de páginas, y luego a la memoria.
 
 ## Paginación con TLB
-...
+Recordando que cada vez que accedo a memoria, tenemos que primero acceder a la tabla de páginas, y luego a la memoria física. Esto es muy lento, por lo que se añade un caché de páginas, llamado TLB (_translation lookaside buffer_). Esta caché es una memoria _fully-asociative_, que guarda las últimas páginas accedidas. Así, se reduce el tiempo de acceso a memoria.
+* Si la dirección está en la caché se produce un _TLB hit_ y se responde inmediatamente.
+* Si la dirección no está en la caché se produce un _TLB miss_ y se lee desde la memoria y se actualiza el TLB.
+
+<p align="center">
+    <img src="assets/memoria/tlb.png" />
+</p>
+
+
+
 ## 03-05
 ...
 ## Paginación multinivel
