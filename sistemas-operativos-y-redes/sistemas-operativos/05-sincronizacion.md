@@ -2,7 +2,7 @@
 Si recordamos los _threads_ como unidad básica de procesamiento
 * Los _threads_ de un proceso comparten el mismo espacio de memoria
 * Los _threads_ de un proceso son concurrentes (compiten por el uso de CPU)
-* Los _threads_ en un sistema multicore pueden ejecutarse en paralelo... deben ser **sincronizados**
+* Los _threads_ en un sistema _multicore_ pueden ejecutarse en paralelo... deben ser **sincronizados**
 <p align="center">
   <img src="assets/sincronizacion/interleaving.png" width="500">
 </p>
@@ -22,7 +22,7 @@ void mess_with_shared_things() {
 }
 ```
 
-### Solucines a la sección crítica
+### Soluciones al problema de la sección crítica
 Deben cumplir:
 * Exclusión mutua: a lo más un _thread_ puede estar en su sección crítica
 * Progreso: al menos un _thread_ puede entrar en su sección crítica. Si ningún _thread_ está en su sección crítica y hay _threads_ que desean entrar, entonces los que quieren entrar deciden (en un tiempo acotado) quien entra.

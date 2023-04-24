@@ -1,11 +1,10 @@
-# Clase 04: _Scheduling_
-## _Scheduling_
-### Planificación de CPU: ¿Cómo podemos gestionar los recursos que tenemos para lograr _multitasking_?
+# _Scheduling_
+## Planificación de CPU: ¿Cómo podemos gestionar los recursos que tenemos para lograr _multitasking_?
 Tenemos:
 * Múltiples procesos en memoria (multiprogramación) ordenados en una tabla de PCBs. Si no tuvieramos multiprogramación no necesitaríamos planificar.
 * Algunos procesos en estado _ready_.
 * CPU que puede atender un solo proceso a la vez.
-<br></br>
+
 Queremos:
 * Multitasking: asignar tiempo a múltiples procesos.
 
@@ -16,7 +15,7 @@ Gestionamos los recursos a través del _scheduler_, el cual puede ser visto como
 </p>
 
 Recordemos que, en el caso de la _syscall_ <code>fork()</code> para Linux, el padre también sigue ejecutando.
-### Niveles de _scheduling_
+## Niveles de _scheduling_
 * _Long-term scheduler_:
   - Admite procesos en la cola _ready_.
   - Determina el grado de multiprogramación (cantidad de procesos en memoria).
@@ -32,7 +31,7 @@ Recordemos que, en el caso de la _syscall_ <code>fork()</code> para Linux, el pa
 </p>
 
 
-#### ¿Y si estamos siempre haciendo _scheduling_ en vez de ejecutar programas?
+### ¿Y si estamos siempre haciendo _scheduling_ en vez de ejecutar programas?
 _Scheduling_ es importante para el _multitasking_... pero _scheduling_ y _context switch_ son solo _overhead_:
 * ¿Qué pasa si el _scheduler_ o el _context switch_ toman más tiempo de lo que toma el proceso?
 * ¿Qué pasa si se le asigna poco tiempo a cada proceso?
@@ -43,7 +42,7 @@ La contención o atascamiento de procesos se refleja en el concepto de _thrashin
 <img src="https://user-images.githubusercontent.com/101217121/226355586-8ac24178-fe91-4920-9987-398f09f8b26f.png"></img>
 </p>
 
-### Modelo de ejecución de un proceso
+## Modelo de ejecución de un proceso
 No todos los procesos se comportan igual. Los procesos en general alternan entre dos fases:
 * Uso de CPU (_CPU brust_)
 * Espera por I/O (_I/O-brust_)
@@ -54,7 +53,7 @@ y suelen estar dominados por uno u otro, de modo que, a los procesos fuertemente
 <img src="https://user-images.githubusercontent.com/101217121/226359283-bc08d9d7-c365-4f8e-bd5b-0c4e89786567.png"></img>
 </p>
 
-#### Una CPU bajo el 100% está subutilizada.
+### Una CPU bajo el 100% está subutilizada.
 El tiempo que gasta un proceso en espera obviamente influye en la utilización de la CPU:
 * $p$ es el porcentaje de tiempo en espera de I/O.
 * $p^n$ es la probabilidad que $n$ procesos estén esperando por I/O.
@@ -65,7 +64,7 @@ Una vez que llego al 100% ya no tiene mucho sentido agregar más procesos.
 <img src="https://user-images.githubusercontent.com/101217121/226360885-77ffd2ec-8dd3-4e20-8af2-eede50c9680c.png"></img>
 </p>
 
-### Tipos de _scheduling_
+## Tipos de _scheduling_
 Podemos clasificar las políticas de _scheduling_ según tipo de interrupción y según objetivo.
 Según tipo de interrupción:
 * _Preemptive_ (expropiativo):
@@ -95,7 +94,7 @@ Según objetivo:
 Todos los tipos de _scheduler_ tienen el objetivo de _fairness_: que todos los procesos tengan un tiempo razonable de ejecución.</p>
 
 
-# Clase 05: Algoritmos de _Scheduling_ I
+# Algoritmos de _Scheduling_ 
 ## Algoritmos de _batch scheduling_
 ### _First-come, First-served_ (FCFS)
 Orden de llegada. Cola FIFO
@@ -125,12 +124,11 @@ _Turnaround_ promedio de 49.
 * Esta versión es _non-preemptive_. La versión _preemptive_ es _Shortest Remaining Time Next_ la cual escoge al que le queda menos tiempo. Este tiempo se debe estimar lo que puede agregar _overhead_.
 * Posible inanición (_starvation_) de procesos largos x.x (si me demoro mucho puede que nunca me toque)
 
-# Clase 06: Algoritmos de _Scheduling_ II
 ## Algoritmos de _scheduling_ interactivos
 <p align="justify">Para este tipo de algoritmos, lo que más importa es que los tiempos de respuesta sean mínimos. En otras palabras, estos algoritmos tienen como métrica principal el <i>response time</i>. El tiempo de respuesta es el tiempo que pasa desde que el usuario envía un trabajo hasta que el trabajo comienza a ejecutarse.
 </p>
 <p align="center">
-<img src="assets/interactivos.png"></img>
+<img src="assets/scheduling/interactivos.png"></img>
 </p>
 
 ### _Round Robin_ (RR)
@@ -139,7 +137,7 @@ _Turnaround_ promedio de 49.
 * El tiempo de ejecución de cada proceso es el mismo y se asigna en forma circular.
 * De tipo <i>preemptive</i>.
 <p align="center">
-<img src="assets/rr.png"></img>
+<img src="assets/scheduling/rr.png"></img>
 </p>
 
 * Con $n$ procesos, cada uno recibe $\frac{1}{n}$ de CPU. 
@@ -167,7 +165,7 @@ _Turnaround_ promedio de 49.
   5. Después de un tiempo $S$, todos los procesos se mueven a la cola con mayor prioridad.
 
 <p align="center">
-  <img src="assets/mlfq.png"></img>
+  <img src="assets/scheduling/mlfq.png"></img>
 </p>
 
 ## Algoritmos de _real time scheduling_
@@ -176,14 +174,14 @@ _Turnaround_ promedio de 49.
 * Sistema debe determinar si el proceso puede ser ejecutado dado el _deadline_ $d$, período $p$ y tiempo de ejecución $t$.
 * En cada período el proceso debe avanzar en su ejecución una vez.
 <p align="center">
-  <img src="assets/real-time.png"></img>
+  <img src="assets/scheduling/real-time.png"></img>
 </p>
 
 ### Algoritmo _Rate Monotonic Scheduling_ (RMS)
 * A cada proceso se le asigna una prioridad $\frac{t_i}{p_i}$
 * Es un algoritmo estático, de modo que podría perder _deadlines_.
 <p align="center">
-  <img src="assets/rms.png"></img>
+  <img src="assets/scheduling/rms.png"></img>
 </p>
 
 ### Algoritmo _Earliest Deadline First_ (EDF)

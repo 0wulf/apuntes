@@ -1,5 +1,5 @@
 # Procesos
-Keywords: procesos,  
+Keywords: procesos, tabla de procesos, 
 ## ¿Qué es un proceso (_task_)? 
 
 * Código en ejecución (código + recursos(memoria, archivos, sockets, I/O, etc)) 
@@ -26,21 +26,21 @@ Multitasking involves overlapping and interleaving the execution of several prog
 </p>
 
 
-El sistema operativo mantiene la Tabla de Procesos. Esta almacena la información de cada proceso en su respectivo Process Control Block (PCB), el que a su vez almacena: 
+El sistema operativo mantiene la **Tabla de Procesos**. Esta almacena la información de cada proceso en su respectivo _Process Control Block_ (PCB), el que a su vez almacena: 
 * Estado del proceso 
 * PID 
-* PC 
+* PC: _Program counter_
 * Registros de CPU: estado de ejecución 
-* Información de scheduling: prioridades, tipo de cola, … 
+* Información de _scheduling_: prioridades, tipo de cola, … 
 * Información de memoria: límites, tabla de páginas/segmentos, … 
-* Contabilidad (accounting) 
+* Contabilidad (_accounting_) 
 * Información de I/O: archivos y dispositivos abiertos, … 
 
 <p align="center">
   <img src="assets/procesos/pcb.png" width="500"/>
 </p>
 
-### Multitasking 
+## _Multitasking_ 
 El cambio de procesos se conoce como context switch 
 * OS actúa luego de una interrupción (syscall, timer, evento, …) 
 * OS almacena estado de registros de P1 en PCB1. P1 queda "en pausa" 
@@ -58,15 +58,13 @@ Durante la inicialización del kernel se crea un proceso raíz con PID=1
 * MacOS: launchd 
 * Windows: InitialSystemProcess, System 
 
- 
-
 ### Syscall `fork()` 
 ¿Quién sigue ejecutando? 
-* Parent y Child siguen ejecutando concurrentemente 
+* Parent y Child siguen ejecutando concurrentemente desde la instrucción de retorno del `fork()`.
 * Ambos existen en la memoria del computador 
 * Cuál proceso continúa en estado running depende de la implementación 
 
-¿Qué "personalidad" tiene el child? 
+### ¿Qué "personalidad" tiene el child? 
 * El hijo es un duplicado casi exacto del padre 
 * El hijo en un nuevo proceso (otro espacio de direcciones) 
 * El hijo copia la memoria del padre a su nuevo espacio 
@@ -98,13 +96,13 @@ Termina el proceso con un código de retorno dado y lo entrega al padre.
 
 ### Procesos huérfanos 
 Linux:  
-* Cuando un padre termina (exit) o muere (kill), sus hijos quedan huérfanos y pasan a ser hijos de init o systemd.  
-* Sin embargo, en condiciones complicadas puede parecer que los hijos si mueren). 
-* Init hace wait() periódicamente por sus hijos. 
+* Cuando un padre termina (_exit_) o muere (_kill_), sus hijos quedan huérfanos y pasan a ser hijos de `init` o `systemd`.  
+* Sin embargo, en condiciones complicadas puede parecer que los hijos si mueren. 
+* Init hace `wait()` periódicamente por sus hijos. 
 
 ### Procesos zombies 
 Linux:  
-* Cuando un proceso termina y su padre no hace wait()  
-* Proceso terminado no se borra inmediatamente de la tablade procesos 
+* Cuando un proceso termina y su padre no hace `wait()`  
+* Proceso terminado no se borra inmediatamente de la tabla de procesos 
 * El proceso tampoco ejecuta nada, porque terminó. 
-* Proceso queda en estado zombie hasta que el padre hace wait() 
+* Proceso queda en estado zombie hasta que el padre hace `wait()` 

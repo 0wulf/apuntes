@@ -5,6 +5,8 @@ Un _thread_ es parecido a un proceso, pero más liviano. Es la unidad básica de
 * Registros
 * Stack
 
+El resto está compartido con otros _threads_ del mismo proceso.
+
 Los procesos pueden tener uno o más threads:
 <p align="center">
     <img src="assets/threads/threads.png" width="75%" height="75%">
@@ -12,7 +14,7 @@ Los procesos pueden tener uno o más threads:
 Cuando hablamos de procesos distintos estamos hablando de espacios de memoria distintos, en cambio, cuando hablamos de threads distintos estamos hablando de distintos puntos de ejecución dentro del mismo espacio de memoria: comparten el mismo código, la misma sección de datos globales, los mismos archivos, el mismo heap. Pero tienen su propio stack y sus propios registros y PC.
 
 ## ¿Por qué usar threads?
-* Ayudan a programar mejor nuestro código haciéndolo más simple.
+* Ayudan a programar mejor nuestro código haciéndolo más simple (organizándolo mejor).
 * Pueden ayudar a paralelizar/distribuir tareas. No necesariamente ejecutan paralelamente.
 
 ## Modelo de threads
