@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>busqueda.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///home/francisco/Documents/university/apuntes/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///home/francisco/Documents/university/apuntes/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <h1 id="b%C3%BAsqueda-en-ia">Búsqueda en IA</h1>
+<ul>
+<li>Todo problema en el que es necesario <strong>encontrar</strong> una solución puede ser formulado como un problema de búsqueda.</li>
+<li>Un algoritmo se dice <strong>de búsqueda</strong> si se mueve a través de un espacio de búsqueda para encontrar la solución.</li>
+<li>Se usa un algoritmo de búsqueda en problemas en donde no se tiene una solución algorítmica.</li>
+<li>Posibles ejemplos: planificar un viaje, jugar ajedrez, resolver un puzzle, etc.</li>
+</ul>
+<h2 id="mundos-determin%C3%ADsticos-con-un-solo-agente">Mundos determinísticos con un solo agente</h2>
+<ul>
+<li>Un espacio de estados $\mathcal{S}$.</li>
+<li>Un conjunto $\mathcal{A}$ de operaodres. Un operador $a\in\mathcal{A}$ es una función parcial:<br>
+$$a:\mathcal{S}\rightarrow\mathcal{S}$$</li>
+<li>Por cada estado, un conjunto $A(s)\subseteq\mathcal{A}$ de operadores aplicables en $s$, Si $a\in\mathcal{A}$ entonces $a(s)$ está definida. Definimos<br>
+$$Succ(s)={a(s)|a\in A(s)}$$</li>
+<li>Una función de costo $c:\mathcal{A}\rightarrow\mathbb{R}^+$.</li>
+<li>Un estadio inicial $s_{init}$.</li>
+<li>Un conjunto de estados finales $G$.</li>
+</ul>
+<h2 id="soluci%C3%B3n-de-un-problema-de-b%C3%BAsqueda">Solución de un problema de búsqueda</h2>
+<ul>
+<li>Una secuencia de operadores $o_0o_1...o_n$ es aplicable en $s_0$ si y solo si $s_{i+1}=o_i(s_i)$ está definida para todo $i=0,1,...,n$.</li>
+<li>Una secuencia aplicable de operadores $o_0o_1...o_n$ es una solución a un problema de búsqueda si y solo si $s_{i+1}=o_i(s_i)$ está definida para todo $i=0,1,...,n$ y $s_n\in G$. Esto último dice que $s_n$ es un estado objetivo.</li>
+</ul>
+<h2 id="algoritmo-de-b%C3%BAsqueda-gen%C3%A9rico">Algoritmo de búsqueda genérico</h2>
+<p>El siguiente es un algoritmo de búsqueda genérico:<br>
+Input: Un problema de búsqueda $(S, A, s_{init},G)$<br>
+Output: Un nodo objetivo.</p>
+<ol>
+<li>$Open$ es un contenedor vacío.</li>
+<li>$Closed$ es un conjunto vacío.</li>
+<li>Inserta $s_{init}$ en $Open$.</li>
+<li>$parent(s_{init})=null$</li>
+<li>while $Open$ no está vacío do</li>
+<li>
+<ul>
+<li>$u\leftarrow$ Extraer($Open$)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Inserta $u$ en $Closed$</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>for each $v\in Succ(u)\setminus(Open\cup Closed)$ do</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>$parent(v)=u$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>if $v\in G$ return $v$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>Inserta $v$ a $Open$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="b%C3%BAsqueda-en-profundidad-dfs">Búsqueda en profundidad (DFS)</h2>
+<ul>
+<li>Resulta de implementar a $Open$ como un stack.</li>
+<li>Siempre se extrae el elemento al tope de $Open$.</li>
+</ul>
+<h2 id="b%C3%BAsqueda-en-amplitud-bfs">Búsqueda en amplitud (BFS)</h2>
+<ul>
+<li>Resulta de implementar a $Open$ como una cola.</li>
+<li>Siempre se extrae el elemento al principio de $Open$.</li>
+</ul>
+<h2 id="propiedades">Propiedades</h2>
+<h3 id="teorema">Teorema</h3>
+<p>Si el espacio de estados es finito, entonces DFS con detección de ciclos es completo (es decir, encuentra una solución si existe una).</p>
+<h3 id="teorema">Teorema</h3>
+<p>Si el espacio de estados es finito, entonces BFS es completo y óptimo para problemas de búsqueda con constos uniformes.</p>
+<h2 id="tiempo-y-espacio">Tiempo y espacio</h2>
+<p>Para los siguientes resultados, suponga:</p>
+<ul>
+<li>$b$: el factor de ramificación promedio.</li>
+<li>$p$: profundidad a la que se encuentra la solución.</li>
+<li>$m$: profundidad máxima del árbol de búsqueda (largo de la rama más larga del árbol de búsqueda).</li>
+</ul>
+<h3 id="teorema">Teorema</h3>
+<ul>
+<li>La memoria usada por DFS es $O(bm)$.</li>
+<li>La memoria usada por BFS es $O(b^p)$.</li>
+</ul>
+<h3 id="teorema">Teorema</h3>
+<ul>
+<li>El tiempo de ejecución de DFS es $O(b^m)$.</li>
+<li>El tiempo de ejecución de BFS es $O(b^p)$.</li>
+</ul>
+<h2 id="profundidad-limitada">Profundidad limitada</h2>
+<ul>
+<li>Funciona como DFS pero recibe como parámetro un límite $l$ de profundidad para la búsqueda. Se ejecuta DFS sobre el suárbol de brofundidad $l$ del espacio de búsqueda.</li>
+</ul>
+<h2 id="profundizaci%C3%B3n-iterativa-iterative-deepening-dfs">Profundización iterativa (Iterative Deepening DFS)</h2>
+<ol>
+<li>$l=1$</li>
+<li>Realice búsqueda en profundidad con límite $l$.</li>
+<li>Si no se encontró solución, incremente $l$ y regrese al paso 2. En caos contrario, retorne la solución encontrada.</li>
+</ol>
+<h3 id="teorema">Teorema</h3>
+<p>Profundización iterativa es completo.</p>
+<h3 id="teorema">Teorema</h3>
+<ul>
+<li>El tiempo de ejecución de profundización iterativa es $O(b^p)$.</li>
+<li>El espacio de ejecución de profundización iterativa es $O(bp)$.</li>
+</ul>
+<h2 id="b%C3%BAsqueda-informada">Búsqueda informada</h2>
+<p>¿Qué podemos hacer para mejorar la búsqueda en estos casos?</p>
+<h3 id="b%C3%BAsqueda-el-mejor-primero-best-first-search">Búsqueda el mejor primero (<em>Best-first search</em>)</h3>
+<p>De manera intuitiva, este algoritmo:</p>
+<ul>
+<li>Mantiene una lista de $Open$ y $Closed$</li>
+<li>Funciona como DFS, pero
+<ul>
+<li>Los nodos en $Open$ tienen asociados una calidad.</li>
+<li>Siempre extrae de $Open$ el nodo de mejor calidad.</li>
+<li>Un estado sucesor es descartado si está en $Closed$ con mejor o igual calidad.</li>
+</ul>
+</li>
+</ul>
+<h3 id="funci%C3%B3n-heur%C3%ADstica">Función heurística</h3>
+<ul>
+<li>En búsqueda informada, usamos una función de estimación del costo de un nodo del árbol de bpusqueda a una solución. La denotamos como<br>
+$$h(n)$$</li>
+<li>En el problema de navegación, si<br>
+$$\Delta x = |x_{obj}-x|, \Delta y = |y_{obj}-y|,$$<br>
+donde $(x,y)$ es la posición actual y $(x_{obj},y_{obj})$ es el objetivo. La siguiente es una posible heurística (también llama distancia <em>octile</em>)<br>
+$$h(x,y)=|\Delta{x}-\Delta{y}|+\sqrt{2}\min{{\Delta{x},\Delta{y}}}$$<br>
+Utilizar únicamente la función heurística conduce a soluciones no óptimas. Para encontrar estas, debemos utilizar una función de costo.</li>
+</ul>
+<h3 id="incorporando-el-costo">Incorporando el costo</h3>
+<ul>
+<li>Es posible encontrar soluciones óptimas al incorporar el costo incurrido hasta llegar un nodo $n$.</li>
+<li>Denotamos este costo como $g(n)$</li>
+<li>Luego, podemos ordenar la frontera de búsqueda por la siguiente función:<br>
+$$f(n)=g(n)+h(n)$$</li>
+</ul>
+<h1 id="algoritmo-a">Algoritmo A*</h1>
+<p>Input: Un problema de búsqueda $(S,A,s_0,G)$<br>
+Output: Un nodo objetivo</p>
+<ol>
+<li>for each $s\in\mathcal{S}$ do $g(s)\leftarrow\infty$</li>
+<li>$Open \leftarrow{{s_0}}$</li>
+<li>$g(s_0)\leftarrow0; f(s_0) \leftarrow h(s_0)$</li>
+<li>while $Open\neq\empty$</li>
+<li>
+<ul>
+<li>extrae un nodo $u$ desde $Open$ con el menor $f-score$</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>if $u$ es objetivo return $u$</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>for each $v\in Succ(u)$ do</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>insertar $v$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="procedimiento-insertar">Procedimiento insertar</h3>
+<ol>
+<li>$cost_v=g(u)+c(u,v)$     // el costo de llegar a $v$ a través de $u$</li>
+<li>if $cost_v\geq g(v)$ return  // seguimos solo si $cost_v&lt;g(v)$</li>
+<li>parent($v$)$\leftarrow u$</li>
+<li>$g(v)\leftarrow cost_v$</li>
+<li>$f(v)\leftarrow g(v)+h(v)$</li>
+<li>if $v\in Open$ then Recordad $Open$</li>
+<li>else Insertar $v$ en $Open$</li>
+</ol>
+<h2 id="a-y-greedy">A* y Greedy</h2>
+<ul>
+<li>Si usamos $f(n)=h(n)$ en A*, entonces el algoritmo resultante es <em>greedy best-first search</em>.</li>
+<li>Los algoritmos ambiciosos encuentran soluciones más rápidamente, sacrificando la calidad de la solución.</li>
+</ul>
+<h2 id="optimalidad-de-a">Optimalidad de A*</h2>
+
+</body>
+
+</html>
