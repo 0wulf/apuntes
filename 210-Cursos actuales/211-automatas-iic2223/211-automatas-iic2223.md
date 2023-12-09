@@ -1,0 +1,41 @@
+%% Begin Waypoint %%
+- [[211-00-Clase introductoria autómatas]]
+- [[211-00-Mapa mental Autómatas.canvas]]
+- **[[211-01-Palabras y Autómatas]]**
+- **[[211-02-Construcciones de autómatas]]**
+- **[[211-03-No-determinismo]]**
+- [[211-04-Expresiones Regulares]]
+- **[[211-05-Autómatas con transiciones sin lectura]]**
+- [[211-06-Teorema de Kleene]]
+- [[211-07-Lema de bombeo]]
+- [[211-08-Minimización de autómatas]]
+- [[211-09-Teorema de Myhill-Nerode]]
+- [[211-10-Autómata en dos direcciones]]
+- [[211-11-Evaluación de expresiones regulares]]
+- [[211-12-Transductores]]
+- [[211-13-Gramáticas libres de contexto]]
+- [[211-14-Simplificación de gramáticas]]
+- [[211-15-Formas Normales]]
+- [[211-16-Lema de bombeo y Algoritmo CKY]]
+- [[211-17-Autómatas apiladores]]
+- [[211-18-Autómatas apiladores vs gramáticas libres de contexto]]
+- [[211-19-Análisis Léxico]]
+- [[211-20-First y Follow]]
+- [[211-21-Gramáticas LL]]
+- [[211-22-K-Lookahead y Algoritmo de Knuth-Morris-Prat]]
+- [[211-23-Parsing con gramáticas LL(k)]]
+- **calendario**
+	- [[2023-08-18 Tarea 1]]
+	- [[2023-09-01 Tarea 2]]
+	- [[2023-09-20 I1]]
+	- [[2023-10-13 Tarea 3]]
+	- [[2023-10-20 Tarea 4]]
+	- [[2023-11-06 I2]]
+	- [[2023-11-17 Tarea 5]]
+	- [[2023-11-24 Tarea 6]]
+	- [[2023-12-13 Examen]]
+- **diapositivas**
+	- [[01-palabras-y-automatas.pdf]]
+- [[Guía Demostraciones Examen Autómatas]]
+
+%% End Waypoint %%

@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"type":"text","text":"# Creación de Videojuegos","id":"b2e1e4881a6f1307","x":-680,"y":-380,"width":420,"height":60,"color":"3"},
+		{"type":"file","file":"200 Uni/210-Cursos actuales/224-videojuegos-iic3686/Contenidos.md","id":"18661592bfac0993","x":-80,"y":-490,"width":430,"height":280},
+		{"id":"d7f0b8b3731ace4e","x":-220,"y":-780,"width":425,"height":220,"type":"file","file":"200 Uni/210-Cursos actuales/224-videojuegos-iic3686/Ponderaciones.md"},
+		{"id":"46d1256f7c11825f","x":-203,"y":-180,"width":392,"height":380,"type":"file","file":"200 Uni/210-Cursos actuales/224-videojuegos-iic3686/Fechas.md"},
+		{"id":"efffabb9498c1f65","x":609,"y":-506,"width":250,"height":60,"type":"text","text":"jjj\n"}
+	],
+	"edges":[
+		{"id":"12e78aa4fa8dd27c","fromNode":"b2e1e4881a6f1307","fromSide":"bottom","toNode":"46d1256f7c11825f","toSide":"left"},
+		{"id":"b95fbabe451e39fe","fromNode":"b2e1e4881a6f1307","fromSide":"right","toNode":"18661592bfac0993","toSide":"left"},
+		{"id":"d5889a422b0c7781","fromNode":"b2e1e4881a6f1307","fromSide":"top","toNode":"d7f0b8b3731ace4e","toSide":"left"},
+		{"id":"a8071c2afdf5631f","fromNode":"18661592bfac0993","fromSide":"right","toNode":"efffabb9498c1f65","toSide":"left"}
+	]
+}

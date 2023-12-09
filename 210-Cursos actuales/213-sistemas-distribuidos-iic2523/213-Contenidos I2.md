@@ -1,0 +1,5 @@
+- [[213-06-Relojes Lógicos]] + Sección 5.2
+- [[213-07-Relojes Vectoriales]]
+- [[213-08-Consenso]] + Sección 8.2. En particular 8.2.3 y 8.2.5
+- [[213-09-Coordinación]] + Sección 5.4
+- [[213-10-Consistencia y replicación]] + Secciones 7.1, 7.2, 7.3 y 8.5 + [Coherencia de cachés NUMA](http://www.cs.cmu.edu/afs/cs/academic/class/15418-s19/www/lectures/13_directory.pdf) + [Problema de los lectores y escritores](https://hrcak.srce.hr/file/69328)

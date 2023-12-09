@@ -1,0 +1,19 @@
+- [x] HUD
+	- [x] Show score
+	- [x] Design
+- [x] Enemy1 more health
+- [x] Enemy2:
+	- [x] gun
+	- [x] enemy-bullet
+	- [x] attack
+	- [x] sprites
+- [x] Full map
+- [x] Spawning enemies: spawn_enemy1 + spawn_enemy2 objects (foreach 15s: if in field of view then spawn)
+- [x] Collectibles
+	- [x] Xp
+	- [x] health
+- [x] Entity dist
+- [x] Instructions text
+- [x] Lighting
+- [x] Intro
+- [x] Presentación

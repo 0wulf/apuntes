@@ -1,0 +1,3 @@
+- El procedimiento que llama y el que es llamado corren en computadores diferentes -> diferentes espacios de direcciones
+- hay que pasar parámetros y resultados entre computadores que pueden no ser idénticos
+- cualquiera de los computadores puede fallar -> cada tipo de falla posible produce problemas diferentes

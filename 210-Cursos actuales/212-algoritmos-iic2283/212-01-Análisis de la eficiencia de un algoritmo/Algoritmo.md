@@ -1,0 +1,3 @@
+Sea $\mathcal{P}$ un problema a resolver, $\mathcal{I}_{\mathcal{P}}$ su conjunto de instancias (casos posibles del problema) y $\mathcal{S}_{\mathcal{P}}$ el conjunto de soluciones a las instancias.
+Vamos a pensar en un algoritmo $\mathcal{A}$ como una función $\mathcal{A}: \mathcal{I}_{\mathcal{P}}\rightarrow\mathcal{S}_{\mathcal{P}}$ 
+Es decir, un algoritmo es una función que toma instancias como input y produce soluciones como output. 

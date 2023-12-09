@@ -1,0 +1,30 @@
+- Luz: 
+	- La iluminación artificial disminuye los niveles de melatonina. En REM cualquier luz puede despertar. 
+	- Luz cálidas mejores que frías para el sueño.
+- Campo visual:
+	- Ordenado y sin distracciones
+		- Libre de todo
+	- Durante la noche podemos cambiar de posición de 20 a 60 veces
+- Cama y almohada:
+	- Ropa liviana
+	- Calidad sábanas
+	- Almohada que permita mantener una postura erguida
+- Temperatura ambiental
+	- El sueño se induce con una T° ambiental entre los 16 y 20 °C
+- Salud física
+- Situaciones estresantes
+- Miedos y creencias
+- Horarios:
+	- Tener una rutina u horario del sueño favorece el buen dormir
+- Siesta:
+	- Ideal entre 30 minutos y no más de 90 minutos, entre las 14:00 y 15:30
+	- En caso contrario se corre el riesgo de quitarle tiempo al sueño nocturno
+- Quedarse en pijama:
+	- Al levantarse debemos vestirnos y arreglarnos como si fuéramos a salir de casa
+- Actividad física de noche:
+	- Necesaria y favorece el sueño, debe realizarse máximo 2 horas antes de dormir.
+	- Debe incorporar actividades de relajación.
+- Alimentos:
+	- Picantes, carnes rojas, embutidos contienen un aminoácido precursor de las catecolaminas y dopaminas que nos mantienen despiertos.
+- Ojalá no entrar tanto al dormitorio.
+- 

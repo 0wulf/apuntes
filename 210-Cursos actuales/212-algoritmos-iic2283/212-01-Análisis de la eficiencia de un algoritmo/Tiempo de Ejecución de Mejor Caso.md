@@ -1,0 +1,3 @@
+Sea $\mathcal{A}$ un algoritmo que resuelve un problema abstracto $\mathcal{P}$. El tiempo de ejecución de mejor caso para $\mathcal{A}$ sobre todas las instancias de tamaño $n$ se define como
+$$t_{\mathcal{A}}(n)\equiv\min\{tiempo_{\mathcal(A)}(I)|I\in\mathcal{I}_{\mathcal{P}}, |I|=n\}$$
+* El mejor caso del algoritmo anterior consiste en buscar el elemento $x=S[1]$ (ejecuta una cantidad constante de instrucciones)
